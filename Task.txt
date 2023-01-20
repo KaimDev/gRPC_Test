@@ -1,0 +1,117 @@
+Desarrollar un GRPC API en C++
+
+Modelo de datos:
+Cliente
+	- Id del Cliente
+	- Nombre
+	- Telefono
+	- Correo
+
+Product
+	- Id del Producto
+	- Nombre
+	- Precio
+
+Factura
+	- Id de la Factura
+	- Nombre
+	- Dirección
+	- Referencia a Cliente
+	- Lista de detalles de factura
+
+Factura Detalle
+	- Referencia a Producto
+	- Descuento
+	- Cantidad
+	- Total
+
+
+Crear los siguientes servicios
+
+ClientService
+	- CreateClient *
+	- LisClient *
+	- BillsClient *
+	- <A su criterio>
+
+ProductService
+	- CreateProduct *
+	- LisProduct *
+	- GetProduct(Category)
+  - GetProduct(>= Price)
+
+BillService
+  - RegisterBill *
+  - GetBillDetails(BillId)
+  - GetBillByDate(google.Protobuf.Timestamp) # yy_mm_dd / hh_mm_ss
+  - ListBills *
+  - <Cualquier otro método>
+
+
+------------------------------------------------------------------------------------------------------------
+
+class Database
+{
+  public:
+    ClientRepository Clients;
+    ProductRepository Products;
+    InvoiceRepository Invoices;
+    InvoiceDetailsRepository InvoicesDetails;
+};
+
+class Client
+{
+};
+
+class ClientRepository // Impl métodos, Patrón Iterator
+{
+ public:
+  using value_type = ...
+  
+  ...
+  Toda la interfaz de un iterador
+  ...
+
+  Status AddClient(Client);
+   Status UpdateClient(ClientId, Client);
+   Status DeleteClient(ClientId);
+   Client* GetClienteById(ClientId);
+   Client* GetClienteByName(ClientName);
+
+  <Client-Repository-Iterator> begin();
+  <Client-Repository-Iterator> end();
+  <Client-Repository-Iterator> cbegin();
+  <Client-Repository-Iterator> cend(); 
+
+ private:
+   std::vector<Client> m_Clients;  
+};
+
+struct Invoice
+{
+   int64_t InvoiceId;
+   Client* Client;
+   .....
+}
+
+class InvoiceRepository
+{
+}
+
+
+struct InvoiceDetails
+{
+   int64_t InvoiceDetailId;
+   Invoice* Invoice;
+   Product* Product;
+   .....
+}
+
+1) - Crear el archivo proto
+2) - Configurarlo en CMake
+3) - Implementar el Servicio/Controller
+4) - Crear/usar el modelo de la base de datos
+5) - Crear el repositorio de ese servicio
+6) - Crear el objeto de validación del modelo del repositorio
+7) - Crear el servicio que consumirá el repositorio y validará todos los datos
+8) - Configurar el Postman para pruebas

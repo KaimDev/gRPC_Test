@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package GrpcProject.Protos.Helpers;
+
+message ServiceStatus
+{
+    bool   is_success    = 1;
+    string error_message = 2;
+}

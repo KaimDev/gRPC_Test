@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package GrpcProject.Protos.Models;
+
+message Client
+{
+    uint64 id    = 1;
+    string name  = 2;
+    string phone = 3;
+    string email = 4;
+}
+
+message ClientId
+{
+    uint64 id = 1;
+}
+
+message ListClientResponse
+{
+    repeated Client clients = 1;
+}

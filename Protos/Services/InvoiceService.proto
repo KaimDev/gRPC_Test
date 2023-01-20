@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+import "Models/Invoice.proto";
+import "Helpers/ServiceStatus.proto";
+
+package GrpcProject.Protos.Services;
+
+service InvoiceService
+{
+  rpc RegsterInvoice(GrpcProject.Protos.Models.Invoice) returns (GrpcProject.Protos.Helpers.ServiceStatus) { }
+  rpc GetInvoiceDetails(GrpcProject.Protos.Models.InvoiceId) returns (GrpcProject.Protos.Models.Invoice) { }
+  rpc ListInvoice(google.protobuf.Empty) returns (GrpcProject.Protos.Models.ListInvoiceResponse) { }
+}

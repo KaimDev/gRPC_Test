@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+import "Models/Product.proto";
+
+package GrpcProject.Protos.Models;
+
+message InvoiceDetails
+{
+    GrpcProject.Protos.Models.Product product   = 1;
+    double                            deduction = 2;
+    int64                             quantity  = 3;
+    int64                             total     = 4;
+}

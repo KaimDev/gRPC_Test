@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+import "Models/Product.proto";
+import "Helpers/ServiceStatus.proto";
+import "google/protobuf/empty.proto";
+
+package GrpcProject.Protos.Services;
+
+service ProductService
+{
+  rpc CreateProduct(GrpcProject.Protos.Models.Product) returns (GrpcProject.Protos.Helpers.ServiceStatus) { }
+  rpc ListProduct(google.protobuf.Empty) returns (GrpcProject.Protos.Models.ListProductResponse) { }
+}

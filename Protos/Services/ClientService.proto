@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+import "Models/Client.proto";
+import "Models/Invoice.proto";
+import "Helpers/ServiceStatus.proto";
+
+package GrpcProject.Protos.Services;
+
+service ClientService
+{
+  rpc CreateClient(GrpcProject.Protos.Models.Client) returns (GrpcProject.Protos.Helpers.ServiceStatus) { }
+  rpc ListClient(google.protobuf.Empty) returns (GrpcProject.Protos.Models.ListClientResponse) { }
+  rpc InvoiceClient(GrpcProject.Protos.Models.ClientId) returns (GrpcProject.Protos.Models.Invoice) { }
+}

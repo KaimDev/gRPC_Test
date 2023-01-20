@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+import "Models/Client.proto";
+import "Models/InvoiceDetails.proto";
+
+package GrpcProject.Protos.Models;
+
+message Invoice
+{
+    uint64                                   id              = 1;
+    string                                   name            = 2;
+    string                                   address         = 3;
+    GrpcProject.Protos.Models.InvoiceDetails invoice_details = 4;
+    uint64                                   client_id       = 5;
+}
+
+message InvoiceId
+{
+    uint64 id = 1;
+}
+
+message ListInvoiceResponse
+{
+    repeated Invoice invoice = 1;
+}
